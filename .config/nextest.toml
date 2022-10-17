@@ -6,6 +6,7 @@
 # - Call out every test as it finishes, including slow, skipped and flaky tests
 # - List failures again at the end.
 # - Run all tests even if some failed.
+# - Output test results in JUnit format.
 [profile.ci]
 # "retries" defines the number of times a test should be retried. If set to a
 # non-zero value, tests that succeed on a subsequent attempt will be marked as

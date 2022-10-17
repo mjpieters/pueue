@@ -1,4 +1,4 @@
-name: Test build
+name: 'Test Build'
 
 on:
   push:
@@ -104,5 +104,22 @@ jobs:
           NEXTEST_PROFILE: ci   # defined in .config/nextest.toml
         with:
           command: nextest
-          args:  run --no-fail-fast --workspace --target=${{ matrix.target }}
+          args:  run --workspace --target=${{ matrix.target }}
           use-cross: ${{ matrix.cross }}
+
+      - name: upload test results
+        uses: actions/upload-artifact@v3
+        if: ${{ !matrix.cross && ( success() || failure() ) }}
+        with:
+          name: Test results (${{ matrix.target }})
+          path: target/nextest/jest-junit.xml
+
+  event_file:
+    name: "Event File"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: Event File
+        path: ${{ github.event_path }}
