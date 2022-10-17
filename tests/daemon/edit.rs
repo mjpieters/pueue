@@ -1,4 +1,5 @@
 use std::path::PathBuf;
+use test_log::test;
 
 use anyhow::{bail, Result};
 
@@ -26,7 +27,7 @@ async fn create_edited_task(shared: &Shared) -> Result<EditResponseMessage> {
     }
 }
 
-#[tokio::test(flavor = "multi_thread", worker_threads = 2)]
+#[test(tokio::test(flavor = "multi_thread", worker_threads = 2))]
 /// Test if adding a normal task works as intended.
 async fn test_edit_flow() -> Result<()> {
     let daemon = daemon().await?;
