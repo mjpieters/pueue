@@ -30,6 +30,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 ### Misc
 
 - Continuation of testing the `pueue` client, pushing the test coverage from ~70% to ~73%.
+- CI tests are now run using cargo nextest, for faster test execution, flaky test handling and better test output.
 
 ## [2.1.0] - 2022-07-21
 
